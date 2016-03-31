@@ -1,0 +1,89 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://127.0.0.1:8888/api/contents/
+    body:
+      encoding: UTF-8
+      string: '{"type":"notebook"}'
+    headers:
+      Accept:
+      - '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Content-Length:
+      - '229'
+      Content-Security-Policy:
+      - frame-ancestors http://127.0.0.1:8080
+      Set-Cookie:
+      - username-127-0-0-1-8888=; expires=Wed, 01 Apr 2015 06:01:31 GMT; Path=/
+      Server:
+      - TornadoServer/4.3
+      Last-Modified:
+      - Thu, 31 Mar 2016 06:01:31 GMT
+      Location:
+      - /api/contents/Untitled2.ipynb
+      Date:
+      - Thu, 31 Mar 2016 06:01:31 GMT
+      X-Frame-Options:
+      - ALLOW-FROM 127.0.0.1:8080
+      Content-Type:
+      - application/json
+      Access-Control-Allow-Origin:
+      - http://127.0.0.1:8080
+    body:
+      encoding: US-ASCII
+      string: '{"mimetype": null, "writable": true, "name": "Untitled2.ipynb", "format":
+        null, "created": "2016-03-31T06:01:31+00:00", "content": null, "last_modified":
+        "2016-03-31T06:01:31+00:00", "path": "Untitled2.ipynb", "type": "notebook"}'
+    http_version:
+  recorded_at: Thu, 31 Mar 2016 06:01:31 GMT
+- request:
+    method: patch
+    uri: http://127.0.0.1:8888/api/contents/Untitled2.ipynb
+    body:
+      encoding: UTF-8
+      string: '{"path":"/test_notebook.ipynb"}'
+    headers:
+      Accept:
+      - '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Length:
+      - '237'
+      Content-Security-Policy:
+      - frame-ancestors http://127.0.0.1:8080
+      Set-Cookie:
+      - username-127-0-0-1-8888=; expires=Wed, 01 Apr 2015 06:01:31 GMT; Path=/
+      Server:
+      - TornadoServer/4.3
+      Last-Modified:
+      - Thu, 31 Mar 2016 06:01:31 GMT
+      Location:
+      - /api/contents/test_notebook.ipynb
+      Date:
+      - Thu, 31 Mar 2016 06:01:31 GMT
+      X-Frame-Options:
+      - ALLOW-FROM 127.0.0.1:8080
+      Content-Type:
+      - application/json
+      Access-Control-Allow-Origin:
+      - http://127.0.0.1:8080
+    body:
+      encoding: US-ASCII
+      string: '{"mimetype": null, "writable": true, "name": "test_notebook.ipynb",
+        "format": null, "created": "2016-03-31T06:01:31+00:00", "content": null, "last_modified":
+        "2016-03-31T06:01:31+00:00", "path": "test_notebook.ipynb", "type": "notebook"}'
+    http_version:
+  recorded_at: Thu, 31 Mar 2016 06:01:31 GMT
+recorded_with: VCR 3.0.1
