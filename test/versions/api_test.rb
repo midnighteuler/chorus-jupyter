@@ -54,8 +54,11 @@ describe ChorusJupyter::V4_1_0::Api do
     it "can create and rename a notebook" do
       VCR.use_cassette('create_and_rename_notebook_' + @version) do
         new_file_name = 'test_notebook.ipynb'
-        create_attempt = @api.create_notebook(new_file_name)
+        if @api.notebook_or_directory_exists(new_file_name)
+          @api.delete_notebook(new_file_name)
+        end
 
+        create_attempt = @api.create_notebook(new_file_name)
         # Expect something like:
         #{
         #    "mimetype":null,
@@ -77,6 +80,69 @@ describe ChorusJupyter::V4_1_0::Api do
 
         # Name needs to match
         create_attempt['name'].must_equal new_file_name
+      end
+    end
+
+    it "can check if a notebook or directory exists" do
+      VCR.use_cassette('notebook_exists_' + @version) do
+        doesnt_exist = 'this_shouldnt_exist.ipynb'
+        if @api.notebook_or_directory_exists(doesnt_exist)
+          @api.delete_notebook(doesnt_exist)
+        end
+
+        exists_attempt = @api.notebook_or_directory_exists(doesnt_exist)
+        exists_attempt.must_equal false
+
+        new_file_name = 'test_notebook.ipynb'
+        @api.create_notebook(new_file_name)
+
+        exists_attempt = @api.notebook_or_directory_exists(new_file_name)
+        ['mimetype', 'writable', 'name', 'format', 'created', 'content', 'last_modified', 'type'].each do |k|
+          exists_attempt.has_key?(k).must_equal true
+        end
+      end
+    end
+
+    it "can get the contents of a notebook" do
+      VCR.use_cassette('get_notebook_contents_' + @version) do
+        doesnt_exist = 'this_shouldnt_exist.ipynb'
+        if @api.notebook_or_directory_exists(doesnt_exist)
+          @api.delete_notebook(doesnt_exist)
+        end
+
+        exists_attempt = @api.get_notebook_contents(doesnt_exist)
+        exists_attempt.nil?.must_equal true
+
+        new_file_name = 'test_notebook.ipynb'
+        @api.create_notebook(new_file_name)
+
+        content_attempt = @api.get_notebook_contents(new_file_name, format='text')
+        ['mimetype', 'writable', 'name', 'format', 'created', 'content', 'last_modified', 'type'].each do |k|
+          content_attempt.has_key?(k).must_equal true
+        end
+        content_attempt['content'].must_equal "{\n \"cells\": [],\n \"metadata\": {},\n \"nbformat\": 4,\n \"nbformat_minor\": 0\n}\n"
+
+        content_attempt = @api.get_notebook_contents(new_file_name, format='base64')
+        ['mimetype', 'writable', 'name', 'format', 'created', 'content', 'last_modified', 'type'].each do |k|
+          content_attempt.has_key?(k).must_equal true
+        end
+        content_attempt['content'].must_equal "ewogImNlbGxzIjogW10sCiAibWV0YWRhdGEiOiB7fSwKICJuYmZvcm1hdCI6IDQsCiAibmJmb3Jt\nYXRfbWlub3IiOiAwCn0K\n"
+      end
+    end
+
+    it "can upload a notebook" do
+      VCR.use_cassette('upload_notebook_' + @version) do
+        uploaded_file_name = 'uploaded_notebook.ipynb'
+        if @api.notebook_or_directory_exists(uploaded_file_name)
+          @api.delete_notebook(uploaded_file_name)
+        end
+
+        contents = "{\n \"cells\": [],\n \"metadata\": { \"testing\": 1 },\n \"nbformat\": 4,\n \"nbformat_minor\": 0\n}\n"
+
+        upload_attempt = @api.upload_notebook(uploaded_file_name, uploaded_file_name, contents)
+        ['mimetype', 'writable', 'name', 'format', 'created', 'content', 'last_modified', 'type'].each do |k|
+          upload_attempt.has_key?(k).must_equal true
+        end
       end
     end
   end

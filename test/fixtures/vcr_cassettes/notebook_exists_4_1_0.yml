@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://127.0.0.1:8888/api/contents/test_notebook.ipynb?content=0
+    uri: http://127.0.0.1:8888/api/contents/this_shouldnt_exist.ipynb?content=0
     body:
       encoding: US-ASCII
       string: ''
@@ -13,23 +13,19 @@ http_interactions:
       - Ruby
   response:
     status:
-      code: 200
-      message: OK
+      code: 404
+      message: Not Found
     headers:
       Content-Length:
-      - '237'
+      - '83'
       Content-Security-Policy:
       - frame-ancestors http://127.0.0.1:8080
       Set-Cookie:
-      - username-127-0-0-1-8888=; expires=Tue, 07 Apr 2015 02:30:33 GMT; Path=/
+      - username-127-0-0-1-8888=; expires=Tue, 07 Apr 2015 02:30:34 GMT; Path=/
       Server:
       - TornadoServer/4.3
-      Last-Modified:
-      - Wed, 06 Apr 2016 02:28:50 GMT
-      Etag:
-      - '"8b8e5376c1809fd071c00d03e3acafeee4ab64c0"'
       Date:
-      - Wed, 06 Apr 2016 02:30:33 GMT
+      - Wed, 06 Apr 2016 02:30:34 GMT
       X-Frame-Options:
       - ALLOW-FROM 127.0.0.1:8080
       Content-Type:
@@ -38,17 +34,15 @@ http_interactions:
       - http://127.0.0.1:8080
     body:
       encoding: US-ASCII
-      string: '{"mimetype": null, "writable": true, "name": "test_notebook.ipynb",
-        "format": null, "created": "2016-04-06T02:28:50+00:00", "content": null, "last_modified":
-        "2016-04-06T02:28:50+00:00", "path": "test_notebook.ipynb", "type": "notebook"}'
+      string: '{"reason": null, "message": "No such file or directory: this_shouldnt_exist.ipynb"}'
     http_version:
-  recorded_at: Wed, 06 Apr 2016 02:30:33 GMT
+  recorded_at: Wed, 06 Apr 2016 02:30:34 GMT
 - request:
-    method: delete
-    uri: http://127.0.0.1:8888/api/contents/test_notebook.ipynb
+    method: get
+    uri: http://127.0.0.1:8888/api/contents/this_shouldnt_exist.ipynb?content=0
     body:
-      encoding: UTF-8
-      string: '{"path":"test_notebook.ipynb"}'
+      encoding: US-ASCII
+      string: ''
     headers:
       Accept:
       - '*/*'
@@ -56,19 +50,19 @@ http_interactions:
       - Ruby
   response:
     status:
-      code: 204
-      message: No Content
+      code: 404
+      message: Not Found
     headers:
       Content-Length:
-      - '0'
+      - '83'
       Content-Security-Policy:
       - frame-ancestors http://127.0.0.1:8080
       Set-Cookie:
-      - username-127-0-0-1-8888=; expires=Tue, 07 Apr 2015 02:30:33 GMT; Path=/
+      - username-127-0-0-1-8888=; expires=Tue, 07 Apr 2015 02:30:34 GMT; Path=/
       Server:
       - TornadoServer/4.3
       Date:
-      - Wed, 06 Apr 2016 02:30:33 GMT
+      - Wed, 06 Apr 2016 02:30:34 GMT
       X-Frame-Options:
       - ALLOW-FROM 127.0.0.1:8080
       Content-Type:
@@ -77,7 +71,7 @@ http_interactions:
       - http://127.0.0.1:8080
     body:
       encoding: US-ASCII
-      string: ''
+      string: '{"reason": null, "message": "No such file or directory: this_shouldnt_exist.ipynb"}'
     http_version:
   recorded_at: Wed, 06 Apr 2016 02:30:34 GMT
 - request:
@@ -136,6 +130,43 @@ http_interactions:
       - Ruby
   response:
     status:
+      code: 409
+      message: Conflict
+    headers:
+      Content-Length:
+      - '71'
+      Content-Security-Policy:
+      - frame-ancestors http://127.0.0.1:8080
+      Set-Cookie:
+      - username-127-0-0-1-8888=; expires=Tue, 07 Apr 2015 02:30:34 GMT; Path=/
+      Server:
+      - TornadoServer/4.3
+      Date:
+      - Wed, 06 Apr 2016 02:30:34 GMT
+      X-Frame-Options:
+      - ALLOW-FROM 127.0.0.1:8080
+      Content-Type:
+      - application/json
+      Access-Control-Allow-Origin:
+      - http://127.0.0.1:8080
+    body:
+      encoding: US-ASCII
+      string: '{"reason": null, "message": "File already exists: test_notebook.ipynb"}'
+    http_version:
+  recorded_at: Wed, 06 Apr 2016 02:30:34 GMT
+- request:
+    method: get
+    uri: http://127.0.0.1:8888/api/contents/test_notebook.ipynb?content=0
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
       code: 200
       message: OK
     headers:
@@ -149,8 +180,8 @@ http_interactions:
       - TornadoServer/4.3
       Last-Modified:
       - Wed, 06 Apr 2016 02:30:34 GMT
-      Location:
-      - /api/contents/test_notebook.ipynb
+      Etag:
+      - '"d6852cc6ea9cc3513050e74b6661e222697321ec"'
       Date:
       - Wed, 06 Apr 2016 02:30:34 GMT
       X-Frame-Options:

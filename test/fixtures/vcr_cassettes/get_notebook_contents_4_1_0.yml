@@ -1,0 +1,247 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://127.0.0.1:8888/api/contents/this_shouldnt_exist.ipynb?content=0
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Content-Length:
+      - '83'
+      Content-Security-Policy:
+      - frame-ancestors http://127.0.0.1:8080
+      Set-Cookie:
+      - username-127-0-0-1-8888=; expires=Tue, 07 Apr 2015 02:30:34 GMT; Path=/
+      Server:
+      - TornadoServer/4.3
+      Date:
+      - Wed, 06 Apr 2016 02:30:34 GMT
+      X-Frame-Options:
+      - ALLOW-FROM 127.0.0.1:8080
+      Content-Type:
+      - application/json
+      Access-Control-Allow-Origin:
+      - http://127.0.0.1:8080
+    body:
+      encoding: US-ASCII
+      string: '{"reason": null, "message": "No such file or directory: this_shouldnt_exist.ipynb"}'
+    http_version:
+  recorded_at: Wed, 06 Apr 2016 02:30:34 GMT
+- request:
+    method: get
+    uri: http://127.0.0.1:8888/api/contents/this_shouldnt_exist.ipynb?content=1&format=text&type=file
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Content-Length:
+      - '83'
+      Content-Security-Policy:
+      - frame-ancestors http://127.0.0.1:8080
+      Set-Cookie:
+      - username-127-0-0-1-8888=; expires=Tue, 07 Apr 2015 02:30:34 GMT; Path=/
+      Server:
+      - TornadoServer/4.3
+      Date:
+      - Wed, 06 Apr 2016 02:30:34 GMT
+      X-Frame-Options:
+      - ALLOW-FROM 127.0.0.1:8080
+      Content-Type:
+      - application/json
+      Access-Control-Allow-Origin:
+      - http://127.0.0.1:8080
+    body:
+      encoding: US-ASCII
+      string: '{"reason": null, "message": "No such file or directory: this_shouldnt_exist.ipynb"}'
+    http_version:
+  recorded_at: Wed, 06 Apr 2016 02:30:34 GMT
+- request:
+    method: post
+    uri: http://127.0.0.1:8888/api/contents/
+    body:
+      encoding: UTF-8
+      string: '{"type":"notebook"}'
+    headers:
+      Accept:
+      - '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Content-Length:
+      - '231'
+      Content-Security-Policy:
+      - frame-ancestors http://127.0.0.1:8080
+      Set-Cookie:
+      - username-127-0-0-1-8888=; expires=Tue, 07 Apr 2015 02:30:34 GMT; Path=/
+      Server:
+      - TornadoServer/4.3
+      Last-Modified:
+      - Wed, 06 Apr 2016 02:30:34 GMT
+      Location:
+      - /api/contents/Untitled10.ipynb
+      Date:
+      - Wed, 06 Apr 2016 02:30:34 GMT
+      X-Frame-Options:
+      - ALLOW-FROM 127.0.0.1:8080
+      Content-Type:
+      - application/json
+      Access-Control-Allow-Origin:
+      - http://127.0.0.1:8080
+    body:
+      encoding: US-ASCII
+      string: '{"mimetype": null, "writable": true, "name": "Untitled10.ipynb", "format":
+        null, "created": "2016-04-06T02:30:34+00:00", "content": null, "last_modified":
+        "2016-04-06T02:30:34+00:00", "path": "Untitled10.ipynb", "type": "notebook"}'
+    http_version:
+  recorded_at: Wed, 06 Apr 2016 02:30:34 GMT
+- request:
+    method: patch
+    uri: http://127.0.0.1:8888/api/contents/Untitled10.ipynb
+    body:
+      encoding: UTF-8
+      string: '{"path":"/test_notebook.ipynb"}'
+    headers:
+      Accept:
+      - '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 409
+      message: Conflict
+    headers:
+      Content-Length:
+      - '71'
+      Content-Security-Policy:
+      - frame-ancestors http://127.0.0.1:8080
+      Set-Cookie:
+      - username-127-0-0-1-8888=; expires=Tue, 07 Apr 2015 02:30:34 GMT; Path=/
+      Server:
+      - TornadoServer/4.3
+      Date:
+      - Wed, 06 Apr 2016 02:30:34 GMT
+      X-Frame-Options:
+      - ALLOW-FROM 127.0.0.1:8080
+      Content-Type:
+      - application/json
+      Access-Control-Allow-Origin:
+      - http://127.0.0.1:8080
+    body:
+      encoding: US-ASCII
+      string: '{"reason": null, "message": "File already exists: test_notebook.ipynb"}'
+    http_version:
+  recorded_at: Wed, 06 Apr 2016 02:30:34 GMT
+- request:
+    method: get
+    uri: http://127.0.0.1:8888/api/contents/test_notebook.ipynb?content=1&format=text&type=file
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Length:
+      - '327'
+      Content-Security-Policy:
+      - frame-ancestors http://127.0.0.1:8080
+      Set-Cookie:
+      - username-127-0-0-1-8888=; expires=Tue, 07 Apr 2015 02:30:34 GMT; Path=/
+      Server:
+      - TornadoServer/4.3
+      Last-Modified:
+      - Wed, 06 Apr 2016 02:30:34 GMT
+      Etag:
+      - '"f4573f09e7663ae11e6b9c19911e863ec6ff3e62"'
+      Date:
+      - Wed, 06 Apr 2016 02:30:34 GMT
+      X-Frame-Options:
+      - ALLOW-FROM 127.0.0.1:8080
+      Content-Type:
+      - application/json
+      Access-Control-Allow-Origin:
+      - http://127.0.0.1:8080
+    body:
+      encoding: US-ASCII
+      string: '{"mimetype": "text/plain", "writable": true, "name": "test_notebook.ipynb",
+        "format": "text", "created": "2016-04-06T02:30:34+00:00", "content": "{\n
+        \"cells\": [],\n \"metadata\": {},\n \"nbformat\": 4,\n \"nbformat_minor\":
+        0\n}\n", "last_modified": "2016-04-06T02:30:34+00:00", "path": "test_notebook.ipynb",
+        "type": "file"}'
+    http_version:
+  recorded_at: Wed, 06 Apr 2016 02:30:34 GMT
+- request:
+    method: get
+    uri: http://127.0.0.1:8888/api/contents/test_notebook.ipynb?content=1&format=base64&type=file
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Length:
+      - '357'
+      Content-Security-Policy:
+      - frame-ancestors http://127.0.0.1:8080
+      Set-Cookie:
+      - username-127-0-0-1-8888=; expires=Tue, 07 Apr 2015 02:30:34 GMT; Path=/
+      Server:
+      - TornadoServer/4.3
+      Last-Modified:
+      - Wed, 06 Apr 2016 02:30:34 GMT
+      Etag:
+      - '"ed40086408a2bbd059760ac2796f56b6ca21ccb2"'
+      Date:
+      - Wed, 06 Apr 2016 02:30:34 GMT
+      X-Frame-Options:
+      - ALLOW-FROM 127.0.0.1:8080
+      Content-Type:
+      - application/json
+      Access-Control-Allow-Origin:
+      - http://127.0.0.1:8080
+    body:
+      encoding: US-ASCII
+      string: '{"mimetype": "application/octet-stream", "writable": true, "name":
+        "test_notebook.ipynb", "format": "base64", "created": "2016-04-06T02:30:34+00:00",
+        "content": "ewogImNlbGxzIjogW10sCiAibWV0YWRhdGEiOiB7fSwKICJuYmZvcm1hdCI6IDQsCiAibmJmb3Jt\nYXRfbWlub3IiOiAwCn0K\n",
+        "last_modified": "2016-04-06T02:30:34+00:00", "path": "test_notebook.ipynb",
+        "type": "file"}'
+    http_version:
+  recorded_at: Wed, 06 Apr 2016 02:30:34 GMT
+recorded_with: VCR 3.0.1
